@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/content/home.css">
+    <link rel="icon" type="image/x-icon" href="../static/img/favicon-32x32.png" />
+    <meta name="description" content="Individiele opdracht">
+    <meta name="keywords" content="Bitcoin">
+    <meta name="author" content="Thomas Scheepers">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin | Wat is dat nou?</title>
+</head>
+<html>
+<body>
+    <div class="main-cointainer">
+        <header class="header">
+            <p class="float-left">BITCOIN</p>
+            <img class="float-right" src="../static/img/Bitcoin.png" width="100" height="100" alt="icon">
+        </header>
+
+        <hr>
+
+        <div class="top-navbar">
+            <ul class="navbar">
+                <li class="nav-item"><a href="{{ url_for('home') }}" class="download-link">Home</a></li>
+                <li class="nav-item"><a href="{{ url_for('satoshi') }}" class="download-link">Satoshi Nakamoto</a></li>
+                <li class="nav-item"><a href="{{ url_for('blockchain') }}" class="download-link">Blockchain</a></li>
+                <li class="nav-item"><a href="{{ url_for('altcoins') }}" class="download-link">Altcoins</a></li>
+            </ul>
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% if username %}
+        Welkom {{ username }}.
+        Klik <a class="download-link" href="{{ url_for('logout') }}">hier</a> om uit te loggen.
+        {% else %}
+        Je bent niet ingelogd.
+        Klik <a class="download-link" href="{{ url_for('login') }}">hier</a> om in te loggen.
+        {% endif %}
+        <br />
+        <br />
+        <hr>
+
+        {% block content %}{% endblock %}
+
+        <div class="main-footer">
+            Website gemaakt door Thomas Scheepers
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <p class="italic">Inloggen</p>
+
+	{% with messages = get_flashed_messages() %}
+		  {% if messages %}
+		    <ul class=flashes>
+		    {% for message in messages %}
+		      <li>{{ message }}</li>
+		    {% endfor %}
+		    </ul>
+		  {% endif %}
+		{% endwith %}
+
+		{% if username %}
+			Je bent al ingelogd als {{ username }}.
+			Klik <a class="download-link" href="{{ url_for('logout') }}">hier</a> om uit te loggen.
+		{% else %}
+			<form method="post" action="">
+				<label for="username">Username</label>
+				<input type="text" name="username" id="username"/> 
+				<br/>
+
+				<label for="password">Password</label>
+				<input type="password" name="password" id="password"/> 
+				<br/>
+
+				<button type="submit" name="submit" id="submit" value="Login">Inloggen</button>
+			</form>
+		{% endif %}
+
+{% endblock %}
